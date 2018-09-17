@@ -1,40 +1,40 @@
 <p>Filter list.<p>
-  <form action="/countries" method="post">
-    <div class="form-group">
-      <select class="form-control" name="category" id="category">
-        <option>Code</option>
-        <option>Name</option>
-        <option>Continent</option>
-        <option>Population</option>
-        <option>LocalName</option>
-        <option>GovernmentForm</option>
-      </select>
+<form action="/countries" method="post">
+  <div class="form-group">
+    <select class="form-control" name="category" id="category">
+      <option>Code</option>
+      <option>Name</option>
+      <option>Continent</option>
+      <option>Population</option>
+      <option>LocalName</option>
+      <option>GovernmentForm</option>
+    </select>
 
-      <select class="form-control" name="operator" id="operator">
-        <option>=</option>
-        <option>!=</option>
-        <option>></option>
-        <option><</option>
-        <option>>=</option>
-        <option><=</option>
-      </select>
+    <select class="form-control" name="operator" id="operator">
+      <option>=</option>
+      <option>!=</option>
+      <option>></option>
+      <option><</option>
+      <option>>=</option>
+      <option><=</option>
+    </select>
 
-      <label for="input">Input: </label>
-      <input id="input" name="input" type="text" class="form-control">
-    </div>
-    <br>
-    <button type="submit" class="btn btn-info">Filter</button>
-  </form>
+    <label for="input">Input: </label>
+    <input id="input" name="input" type="text" class="form-control">
+  </div>
+  <br>
+  <button type="submit" class="btn btn-info">Filter</button>
+</form>
 <br>
 <ul>
 @foreach (var country in Model)
 {
-<li>ID: @country.GetCode()</li>
+<li>Country Code: @country.GetCode()</li>
 <li>Name: @country.GetName()</li>
-<li>Country Code: @country.GetContinent()</li>
-<li>District: @country.GetPopulation()</li>
-<li>Population: @country.GetLN()</li>
-<li>Population: @country.GetGF()</li>
+<li>Continent: @country.GetContinent()</li>
+<li>Population: @country.GetPopulation()</li>
+<li>Local Name: @country.GetLN()</li>
+<li>Government Form: @country.GetGF()</li>
 <br>
 }
 </ul>

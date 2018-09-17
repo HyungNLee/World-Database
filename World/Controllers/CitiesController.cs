@@ -12,5 +12,12 @@ namespace World.Controllers
       List<City> allCities = City.GetAll();
       return View(allCities);
     }
+
+    [HttpPost("/cities")]
+    public ActionResult Filter()
+    {
+      List<City> allCities = City.GetAllFiltered(Request.Form["order"]);
+      return View("Index", allCities);
+    }
   }
 }

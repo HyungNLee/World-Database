@@ -98,5 +98,31 @@ namespace World.Models
       return allCities;
     }
 
+    public static List<City> GetAllFiltered(string sortOrder)
+    {
+      List<City> allCities = new List<City> {};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM city ORDER BY Population " + sortOrder + ";";
+      MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while (rdr.Read())
+      {
+        int cityId = rdr.GetInt32(0);
+        string cityName = rdr.GetString(1);
+        string cityCC = rdr.GetString(2);
+        string cityDistrict = rdr.GetString(3);
+        int cityPop = rdr.GetInt32(4);
+        City newCity = new City(cityId, cityName, cityCC, cityDistrict, cityPop);
+        allCities.Add(newCity);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return allCities;
+    }
+
   }
 }
