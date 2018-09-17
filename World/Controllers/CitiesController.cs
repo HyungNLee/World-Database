@@ -19,5 +19,11 @@ namespace World.Controllers
       List<City> allCities = City.GetAllFiltered(Request.Form["order"]);
       return View("Index", allCities);
     }
+    [HttpGet("/cities/{Id}")]
+    public ActionResult Details(string Id)
+    {
+      City newCity = City.GetCityById(Id);
+      return View(newCity);
+    }
   }
 }

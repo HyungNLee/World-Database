@@ -123,6 +123,30 @@ namespace World.Models
       }
       return allCities;
     }
+    public static City GetCityById(string ID)
+    {
+      MySqlConnection conn = DB.Connection();
+      City newCity = new City(0, "dum", "dum", "dum", 0);
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM city WHERE Id = " + ID + ";";
+      MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while (rdr.Read())
+      {
+        int cityId = rdr.GetInt32(0);
+        string cityName = rdr.GetString(1);
+        string cityCC = rdr.GetString(2);
+        string cityDistrict = rdr.GetString(3);
+        int cityPop = rdr.GetInt32(4);
+        newCity = new City(cityId, cityName, cityCC, cityDistrict, cityPop);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return newCity;
+    }
 
   }
 }
