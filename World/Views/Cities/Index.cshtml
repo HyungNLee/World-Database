@@ -1,0 +1,11 @@
+<ul>
+@foreach (var city in Model)
+{
+<li>ID: @city.GetId()</li>
+<li>Name: @city.GetName()</li>
+<li>Country Code: @city.GetCountryCode()</li>
+<li>District: @city.GetDistrict()</li>
+<li>Population: @city.GetPop()</li>
+<br>
+}
+</ul>
